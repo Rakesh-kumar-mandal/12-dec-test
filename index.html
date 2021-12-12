@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dec 12th 2021</title>
+    <script>
+        function fnGetData() {
+            var meme = document.getElementById("meme1");
+            fetch("https://meme-api.herokuapp.com/gimme")
+            .then((result) => {
+                console.log(result);
+                return result.json();
+            }).then((data) => {
+                console.log(data.url);
+                meme.src = data.url;
+                meme.style.height = "500px";
+                meme.style.width = "500px";
+            })
+            .catch((errormsg) => {
+                alert("Error while getting the data");
+            })
+        }
+    </script>
+</head>
+<body>
+    <div id="container">
+    <button onclick="fnGetData()">Get The Data</button>
+    <img id="meme1"/>
+</div>
+</body>
+</html>
